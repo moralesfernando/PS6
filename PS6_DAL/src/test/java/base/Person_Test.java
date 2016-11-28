@@ -123,7 +123,7 @@ public class Person_Test {
 		assertNotNull("Person added successfully.", per);
 
 		ArrayList<PersonDomainModel> people = new ArrayList<PersonDomainModel>();
-		people = PersonDAL.getPersons();
+		people = PersonDAL.getPeople();
 		System.out.println(people);
 		assertNotNull("Person retrieved successfully.", people);
 
