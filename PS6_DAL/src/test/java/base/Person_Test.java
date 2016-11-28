@@ -66,7 +66,8 @@ public class Person_Test {
 	public void AddPersonTest() {
 		PersonDomainModel per;
 		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("Invalid person.", per);
+		assertNull("No person.", per);
+		
 		PersonDAL.addPerson(person1);
 
 		per = PersonDAL.getPerson(person1.getPersonID());
@@ -82,7 +83,8 @@ public class Person_Test {
 		final String Lastname = "Smith";
 
 		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("Invalid person.", per);
+		assertNull("No person.", per);
+		
 		PersonDAL.addPerson(person1);
 
 		person1.setLastName(Lastname);
@@ -90,7 +92,7 @@ public class Person_Test {
 
 		per = PersonDAL.getPerson(person1.getPersonID());
 
-		assertTrue("No name change.", person1.getLastName() == Lastname);
+		assertTrue("Person lastname updated successfully.", person1.getLastName() == Lastname);
 
 		PersonDAL.deletePerson(person1.getPersonID());
 	}
@@ -99,23 +101,25 @@ public class Person_Test {
 	public void DeletePersonTest() {
 		PersonDomainModel per;
 		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("Invalid Person.", per);
+		assertNull("No Person.", per);
 
 		PersonDAL.addPerson(person1);
+		
 		per = PersonDAL.getPerson(person1.getPersonID());
 		System.out.println(person1.getPersonID() + "Added");
 		assertNotNull("Person added successfully.", per);
 
 		PersonDAL.deletePerson(person1.getPersonID());
+		
 		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("Invalid person.", per);
+		assertNull("No person.", per);
 	}
 
 	@Test
 	public void GetPeopleTest() {
 		PersonDomainModel per;
 		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("Invalid person.", per);
+		assertNull("No person.", per);
 
 		PersonDAL.addPerson(person1);
 		per = PersonDAL.getPerson(person1.getPersonID());
@@ -125,7 +129,7 @@ public class Person_Test {
 		ArrayList<PersonDomainModel> people = new ArrayList<PersonDomainModel>();
 		people = PersonDAL.getPeople();
 		System.out.println(people);
-		assertNotNull("Person retrieved successfully.", people);
+		assertNotNull("People retrieved successfully.", people);
 
 		PersonDAL.deletePerson(person1.getPersonID());
 	}
