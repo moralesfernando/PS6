@@ -112,7 +112,7 @@ public class Person_Test {
 	}
 
 	@Test
-	public void GetPersonsTest() {
+	public void GetPeopleTest() {
 		PersonDomainModel per;
 		per = PersonDAL.getPerson(person1.getPersonID());
 		assertNull("Invalid person.", per);
