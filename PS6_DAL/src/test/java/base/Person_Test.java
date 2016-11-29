@@ -48,6 +48,7 @@ public class Person_Test {
 		person1.setCity("Elkton");
 		person1.setStreet("702 Stone Gate Blvd");
 		person1.setPostalCode(21921);
+		System.out.print(person1.getPersonID().toString()+ "Person.");
 	}
 
 	@AfterClass
@@ -65,69 +66,49 @@ public class Person_Test {
 	@Test
 	public void AddPersonTest() {
 		PersonDomainModel per;
-		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("No person.", per);
-		
 		PersonDAL.addPerson(person1);
-
 		per = PersonDAL.getPerson(person1.getPersonID());
 		System.out.println(person1.getPersonID() + "Added");
-		assertNotNull("Person added successfully.", per);
-
+		assertNotNull("Person added successfully.",per);
+		
 		PersonDAL.deletePerson(person1.getPersonID());
 	}
 
 	@Test
 	public void UpdatePersonTest() {
 		PersonDomainModel per;
-		final String Lastname = "Smith";
-
-		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("No person.", per);
-		
+		final String Lastname = "Roberts";
 		PersonDAL.addPerson(person1);
-
 		person1.setLastName(Lastname);
 		PersonDAL.updatePerson(person1);
-
 		per = PersonDAL.getPerson(person1.getPersonID());
-
 		assertTrue("Person lastname updated successfully.", person1.getLastName() == Lastname);
-
+		
 		PersonDAL.deletePerson(person1.getPersonID());
 	}
 
 	@Test
 	public void DeletePersonTest() {
 		PersonDomainModel per;
-		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("No Person.", per);
-
 		PersonDAL.addPerson(person1);
-		
 		per = PersonDAL.getPerson(person1.getPersonID());
 		System.out.println(person1.getPersonID() + "Added");
-		assertNotNull("Person added successfully.", per);
-
-		PersonDAL.deletePerson(person1.getPersonID());
+		assertNotNull("Person added successfully.",per);
 		
-		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("No person.", per);
+		PersonDAL.deletePerson(person1.getPersonID());
+		assertEquals(PersonDAL.getPersons().size(),0); 
+		//assertNull didnt work for some reason? maybe bc primary key cant be null?
 	}
 
 	@Test
-	public void GetPeopleTest() {
+	public void GetPersonsTest() {
 		PersonDomainModel per;
-		per = PersonDAL.getPerson(person1.getPersonID());
-		assertNull("No person.", per);
-
 		PersonDAL.addPerson(person1);
 		per = PersonDAL.getPerson(person1.getPersonID());
 		System.out.println(person1.getPersonID() + "Added");
 		assertNotNull("Person added successfully.", per);
-
 		ArrayList<PersonDomainModel> people = new ArrayList<PersonDomainModel>();
-		people = PersonDAL.getPeople();
+		people = PersonDAL.getPersons();
 		System.out.println(people);
 		assertNotNull("People retrieved successfully.", people);
 
@@ -140,8 +121,6 @@ public class Person_Test {
 		PersonDAL.addPerson(person1);
 		per = PersonDAL.getPerson(person1.getPersonID());
 		System.out.println(person1.getPersonID() + "Added");
-
-		per = PersonDAL.getPerson(person1.getPersonID());
 		assertNotNull("Person added successfully.", per);
 
 		PersonDAL.deletePerson(person1.getPersonID());

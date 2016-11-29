@@ -118,9 +118,8 @@ public class PersonOverviewController {
         	UUID perID = selectedPerson.getPersonID();
         	System.out.println("Try to delete: " + perID.toString());
         	
-        	//TODO: Delete the person, call the deletePerson(perID) method
-        	//		in the DAL
-        	 
+        	
+        	PersonDAL.deletePerson(perID);
             personTable.getItems().remove(selectedIndex);
             
             
@@ -156,9 +155,7 @@ public class PersonOverviewController {
         	per.setPostalCode(tempPerson.getPostalCode());
         	per.setBirthday(tempPerson.getBirthday());
         	
-        	//TODO: Delete the person, call the addPerson(perID) method
-        	//		in the DAL
-        	        	
+        	PersonDAL.addPerson(per);     	
             mainApp.getPersonData().add(tempPerson);
         }
     }
@@ -187,11 +184,8 @@ public class PersonOverviewController {
             	
 
             	
-            	//TODO: Delete the person, call the updatePerson(perID) method
-            	//		in the DAL
-            	
-            	
-                showPersonDetails(selectedPerson);
+            	PersonDAL.updatePerson(updatePer);
+            	showPersonDetails(selectedPerson);
                 mainApp.RefreshPersonTable();
             }
 

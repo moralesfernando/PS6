@@ -34,19 +34,19 @@ public class PersonDAL {
 		return per;
 	}
 
-	public static ArrayList<PersonDomainModel> getPeople() {
+	public static ArrayList<PersonDomainModel> getPersons() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		PersonDomainModel perGet = null;
-		ArrayList<PersonDomainModel> peop = new ArrayList<PersonDomainModel>();
+		ArrayList<PersonDomainModel> pers = new ArrayList<PersonDomainModel>();
 
 		try {
 			tx = session.beginTransaction();
 
-			List people = session.createQuery("FROM PersonDomainModel").list();
-			for (Iterator iterator = people.iterator(); iterator.hasNext();) {
+			List persons = session.createQuery("FROM PersonDomainModel").list();
+			for (Iterator iterator = persons.iterator(); iterator.hasNext();) {
 				PersonDomainModel per = (PersonDomainModel) iterator.next();
-				peop.add(per);
+				pers.add(per);
 				
 
 			}
@@ -59,7 +59,7 @@ public class PersonDAL {
 		} finally {
 			session.close();
 		}
-		return peop;
+		return pers;
 	}
 
 	public static PersonDomainModel getPerson(UUID perID) {
